@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breathing & Core Muscle Trainer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    body { font-family: 'Inter', sans-serif; }
+    
+    .pulse-gentle {
+      animation: pulseGentle 4s ease-in-out infinite;
+    }
+    
+    .pulse-strong {
+      animation: pulseStrong 1s ease-in-out infinite;
+    }
+    
+    @keyframes pulseGentle {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+    
+    @keyframes pulseStrong {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+    
+    .breathe-in {
+      animation: breatheIn 5s ease-in-out infinite;
+      box-shadow: 0 0 30px rgba(239, 68, 68, 0.4), 0 0 60px rgba(239, 68, 68, 0.2);
+    }
+    
+    .breathe-out {
+      animation: breatheOut 5s ease-in-out infinite;
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.4), 0 0 60px rgba(16, 185, 129, 0.2);
+    }
+    
+    .breathe-prepare {
+      animation: breathePrepare 2s ease-in-out infinite;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 0.1);
+    }
+    
+    @keyframes breatheIn {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+    }
+    50% {
+      transform: scale(1.15);
+      box-shadow: 0 0 25px rgba(239, 68, 68, 0.6);
+    }
+  }
+
+  @keyframes breatheOut {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+    }
+    50% {
+      transform: scale(1.15);
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.6);
+    }
+  }
+
+  .breathe-in {
+    background-color: #ef4444;
+    animation: breatheIn 5s ease-in-out infinite;
+  }
+
+  .breathe-out {
+    background-color: #10b981;
+    animation: breatheOut 5s ease-in-out infinite;
+  }
+    @keyframes breathePrepare {
+      0%, 100% { 
+        transform: scale(1) rotate(0deg); 
+        opacity: 0.9;
+      }
+      50% { 
+        transform: scale(1.03) rotate(0deg); 
+        opacity: 1;
+      }
+    }
+    
+    .gradient-border {
+      background: linear-gradient(45deg, #06b6d4, #3b82f6, #8b5cf6, #ec4899);
+      background-size: 400% 400%;
+      animation: gradientShift 3s ease infinite;
+    }
+
+    
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .health-gradient {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+    
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+  
+  <!-- Animated Background Elements -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-20 left-10 w-32 h-32 bg-blue-200 rounded-full opacity-20 floating"></div>
+    <div class="absolute top-40 right-20 w-24 h-24 bg-purple-200 rounded-full opacity-30 floating" style="animation-delay: 1s;"></div>
+    <div class="absolute bottom-32 left-1/4 w-20 h-20 bg-pink-200 rounded-full opacity-25 floating" style="animation-delay: 2s;"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="relative z-10 w-full health-gradient text-white py-8 shadow-2xl">
+    <div class="container mx-auto px-4 text-center">
+      <div class="flex items-center justify-center mb-3">
+        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-3 pulse-gentle">
+          <span class="text-2xl">🧘‍♀️</span>
+        </div>
+        <h1 class="text-4xl font-bold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+          Wellness Breathing Trainer
+        </h1>
+      </div>
+      <p class="text-lg opacity-90 max-w-2xl mx-auto leading-relaxed">
+        Transform your health with guided breathing exercises designed to strengthen your core, improve posture, and enhance mental clarity
+      </p>
+      <div class="flex justify-center mt-4 space-x-6 text-sm">
+        <div class="flex items-center">
+          <span class="w-2 h-2 bg-green-300 rounded-full mr-2"></span>
+          <span>Stress Relief</span>
+        </div>
+        <div class="flex items-center">
+          <span class="w-2 h-2 bg-blue-300 rounded-full mr-2"></span>
+          <span>Core Strength</span>
+        </div>
+        <div class="flex items-center">
+          <span class="w-2 h-2 bg-purple-300 rounded-full mr-2"></span>
+          <span>Better Posture</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 container mx-auto max-w-4xl px-4 py-8 space-y-8">
+
+    <!-- Quick Actions -->
+    <div class="flex flex-wrap justify-center gap-4 mb-8">
+      <button onclick="toggleInfo()" class="glass-effect text-blue-700 font-medium px-6 py-3 rounded-full hover:bg-white/20 transition-all duration-300 flex items-center card-hover">
+        <span class="text-xl mr-2">💡</span>
+        Health Benefits
+      </button>
+      <button onclick="showHistory()" class="glass-effect text-emerald-700 font-medium px-6 py-3 rounded-full hover:bg-white/20 transition-all duration-300 flex items-center card-hover">
+        <span class="text-xl mr-2">📊</span>
+        Progress History
+      </button>
+    </div>
+
+    <!-- Input Section -->
+    <section id="input-section" class="glass-effect rounded-3xl p-8 shadow-xl card-hover">
+      <div class="text-center mb-6">
+        <h2 class="text-3xl font-bold text-gray-800 mb-2">Begin Your Wellness Journey</h2>
+        <p class="text-gray-600">Customize your breathing session and start building healthier habits</p>
+      </div>
+      
+      <div class="max-w-md mx-auto space-y-6">
+        <div class="relative">
+          <input id="username" type="text" placeholder="Your name" 
+                 class="w-full px-6 py-4 rounded-2xl border-2 border-gray-200 focus:border-blue-400 focus:outline-none transition-all duration-300 text-lg bg-white/80" />
+          <span class="absolute right-4 top-4 text-2xl">👤</span>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-4">
+          <div class="relative">
+            <input id="sets" type="number" placeholder="Sets" min="1" max="10" value="3"
+                   class="w-full px-6 py-4 rounded-2xl border-2 border-gray-200 focus:border-purple-400 focus:outline-none transition-all duration-300 text-lg bg-white/80" />
+            <span class="absolute right-4 top-4 text-xl">🔢</span>
+          </div>
+          <div class="relative">
+            <input id="reps" type="number" placeholder="Reps" min="1" max="20" value="5"
+                   class="w-full px-6 py-4 rounded-2xl border-2 border-gray-200 focus:border-pink-400 focus:outline-none transition-all duration-300 text-lg bg-white/80" />
+            <span class="absolute right-4 top-4 text-xl">🔄</span>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-4">
+          <div class="relative">
+            <input id="hold-seconds" type="number" placeholder="Hold (sec)" min="3" max="15" value="5"
+                   class="w-full px-6 py-4 rounded-2xl border-2 border-gray-200 focus:border-red-400 focus:outline-none transition-all duration-300 text-lg bg-white/80" />
+            <span class="absolute right-4 top-4 text-xl">⏱️</span>
+          </div>
+          <div class="relative">
+            <input id="relax-seconds" type="number" placeholder="Relax (sec)" min="3" max="15" value="5"
+                   class="w-full px-6 py-4 rounded-2xl border-2 border-gray-200 focus:border-green-400 focus:outline-none transition-all duration-300 text-lg bg-white/80" />
+            <span class="absolute right-4 top-4 text-xl">🌿</span>
+          </div>
+        </div>
+        
+        <button onclick="startSession()" 
+                class="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-2xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+          <span class="mr-2">🚀</span>
+          Start Your Session
+        </button>
+      </div>
+    </section>
+
+    <!-- Timer Section -->
+    <section id="timer-section" class="hidden glass-effect rounded-3xl p-8 shadow-xl text-center">
+      <div class="max-w-lg mx-auto space-y-6">
+        
+        <!-- Main Breathing Circle -->
+        <div class="relative mx-auto mb-8">
+          <div id="effect-box" class="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-2xl font-bold shadow-2xl transition-all duration-1000 breathe-prepare">
+            Prepare
+          </div>
+    
+          <!-- Breathing rings -->
+          <div class="absolute inset-0 rounded-full border-4 border-white/20 animate-ping"></div>
+          <div class="absolute inset-4 rounded-full border-2 border-white/10" style="animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite; animation-delay: 0.5s;"></div>
+        </div>
+
+        <!-- Status Display -->
+        <div class="space-y-4">
+          <p id="status" class="text-3xl font-bold text-gray-800">Preparing...</p>
+          <div class="flex justify-center space-x-8 text-lg">
+            <div class="bg-white/50 px-4 py-2 rounded-xl">
+              <span class="text-gray-600">Rep:</span>
+              <span id="rep-count" class="font-bold text-blue-600 ml-1">0</span>
+            </div>
+            <div class="bg-white/50 px-4 py-2 rounded-xl">
+              <span class="text-gray-600">Set:</span>
+              <span id="set-count" class="font-bold text-purple-600 ml-1">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="flex justify-center gap-4 flex-wrap mt-8">
+          <button onclick="pauseSession()" 
+                  class="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center shadow-lg">
+            <span class="mr-2">⏸️</span>Pause
+          </button>
+          <button onclick="resumeSession()" 
+                  class="bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center shadow-lg">
+            <span class="mr-2">▶️</span>Resume
+          </button>
+          <button onclick="terminateSession()" 
+                  class="bg-gradient-to-r from-red-400 to-red-600 hover:from-red-500 hover:to-red-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center shadow-lg">
+            <span class="mr-2">⏹️</span>Stop
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- History Section -->
+    <section id="history-section" class="hidden glass-effect rounded-3xl p-8 shadow-xl card-hover">
+      <div class="text-center mb-6">
+        <h2 class="text-3xl font-bold text-gray-800 mb-2">Your Progress Journey</h2>
+        <p class="text-gray-600">Track your wellness achievements and stay motivated</p>
+      </div>
+      <div id="history-content" class="space-y-4 max-h-96 overflow-y-auto"></div>
+      <div class="text-center mt-6">
+        <button onclick="clearHistory()" 
+                class="text-red-500 hover:text-red-700 font-medium px-6 py-2 rounded-xl hover:bg-red-50 transition-all duration-300">
+          <span class="mr-2">🗑️</span>Clear History
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Info Modal -->
+  <div id="info-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="health-gradient text-white p-6 rounded-t-3xl">
+        <h2 class="text-2xl font-bold mb-2">🌟 Transform Your Health</h2>
+        <p class="opacity-90">Discover the science-backed benefits of structured breathing exercises</p>
+      </div>
+      
+      <div class="p-6 space-y-6">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-2xl">
+            <div class="text-3xl mb-2">🫁</div>
+            <h3 class="font-bold text-blue-800 mb-2">Respiratory Health</h3>
+            <p class="text-sm text-blue-700">Enhances lung capacity and oxygen flow throughout your body</p>
+          </div>
+          
+          <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-2xl">
+            <div class="text-3xl mb-2">💪</div>
+            <h3 class="font-bold text-purple-800 mb-2">Core Strength</h3>
+            <p class="text-sm text-purple-700">Strengthens pelvic floor and deep abdominal muscles</p>
+          </div>
+          
+          <div class="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-2xl">
+            <div class="text-3xl mb-2">🧘</div>
+            <h3 class="font-bold text-green-800 mb-2">Stress Relief</h3>
+            <p class="text-sm text-green-700">Activates parasympathetic nervous system for relaxation</p>
+          </div>
+          
+          <div class="bg-gradient-to-br from-pink-50 to-pink-100 p-4 rounded-2xl">
+            <div class="text-3xl mb-2">🏃</div>
+            <h3 class="font-bold text-pink-800 mb-2">Better Posture</h3>
+            <p class="text-sm text-pink-700">Improves spinal alignment and reduces back pain</p>
+          </div>
+        </div>
+        
+        <div class="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-2xl">
+          <h3 class="font-bold text-indigo-800 mb-3">🎯 How It Works</h3>
+          <div class="space-y-2 text-sm text-indigo-700">
+            <p>• <strong>Hold Phase:</strong> Contract your core and pelvic muscles while breathing deeply</p>
+            <p>• <strong>Release Phase:</strong> Relax completely and focus on gentle breathing</p>
+            <p>• <strong>Progressive Training:</strong> Gradually build strength and endurance</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="p-6">
+        <button onclick="toggleInfo()" 
+                class="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold py-4 rounded-2xl transition-all duration-300">
+          Start Your Wellness Journey
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentRep = 0, currentSet = 1, totalReps = 0, totalSets = 0;
+    let username = "", interval, holdTimeout, paused = false;
+    let holdSeconds = 5, relaxSeconds = 5;
+
+    const effectBox = document.getElementById("effect-box");
+    const statusText = document.getElementById("status");
+    const repCount = document.getElementById("rep-count");
+    const setCount = document.getElementById("set-count");
+
+    function startSession() {
+      username = document.getElementById("username").value.trim();
+      totalSets = parseInt(document.getElementById("sets").value);
+      totalReps = parseInt(document.getElementById("reps").value);
+      holdSeconds = parseInt(document.getElementById("hold-seconds").value);
+      relaxSeconds = parseInt(document.getElementById("relax-seconds").value);
+
+      if (!username || isNaN(totalSets) || isNaN(totalReps) || isNaN(holdSeconds) || isNaN(relaxSeconds) || 
+          totalSets <= 0 || totalReps <= 0 || holdSeconds <= 0 || relaxSeconds <= 0) {
+        showNotification("Please enter valid information in all fields", "error");
+        return;
+      }
+
+      const session = {
+        name: username,
+        sets: totalSets,
+        reps: totalReps,
+        holdSeconds: holdSeconds,
+        relaxSeconds: relaxSeconds,
+        date: new Date().toLocaleString(),
+        completed: false
+      };
+
+      // Note: Using in-memory storage for this demo
+      if (!window.sessionHistory) window.sessionHistory = [];
+      window.sessionHistory.push(session);
+
+      document.getElementById("input-section").classList.add("hidden");
+      document.getElementById("timer-section").classList.remove("hidden");
+
+      currentSet = 1;
+      currentRep = 0;
+      
+      showNotification(`🎉 Welcome ${username}! Hold: ${holdSeconds}s, Relax: ${relaxSeconds}s`, "success");
+      
+      setTimeout(() => {
+        runSet();
+      }, 2000);
+    }
+
+    function runSet() {
+      updateDisplay();
+      
+      const runRep = () => {
+        if (paused) return;
+
+        if (currentRep >= totalReps) {
+          currentSet++;
+          if (currentSet > totalSets) {
+            finishSession();
+            return;
+          }
+          currentRep = 0;
+          statusText.textContent = `🎊 Set ${currentSet - 1} Complete! Preparing next set...`;
+          effectBox.className = "w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-green-400 to-emerald-500 text-white text-2xl font-bold flex items-center justify-center shadow-2xl pulse-gentle";
+          effectBox.textContent = "Rest";
+          
+          setTimeout(() => {
+            if (!paused) runSet();
+          }, 3000);
+          return;
+        }
+
+        // Hold Phase
+        statusText.textContent = `💪 Hold & Breathe (${currentRep + 1}/${totalReps}) - ${holdSeconds}s`;
+        effectBox.className = "w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-red-400 to-red-600 text-white text-2xl font-bold flex items-center justify-center shadow-2xl breathe-in transition-all duration-1000";
+        effectBox.textContent = "HOLD";
+        effectBox.style.filter = "brightness(1.1) saturate(1.2)";
+
+        holdTimeout = setTimeout(() => {
+          if (paused) return;
+          
+          // Release Phase
+          statusText.textContent = `🌸 Release & Relax (${currentRep + 1}/${totalReps}) - ${relaxSeconds}s`;
+          effectBox.className = "w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-green-400 to-emerald-500 text-white text-2xl font-bold flex items-center justify-center shadow-2xl breathe-out transition-all duration-1000";
+          effectBox.textContent = "RELAX";
+          effectBox.style.filter = "brightness(1.1) saturate(1.2)";
+          
+          currentRep++;
+          updateDisplay();
+          
+          setTimeout(() => {
+            if (!paused) runRep();
+          }, relaxSeconds * 1000);
+        }, holdSeconds * 1000);
+      };
+
+      runRep();
+    }
+
+    function updateDisplay() {
+      repCount.textContent = `${currentRep}/${totalReps}`;
+      setCount.textContent = `${currentSet}/${totalSets}`;
+    }
+
+    function pauseSession() {
+      paused = true;
+      clearTimeout(holdTimeout);
+      statusText.textContent = "⏸️ Session Paused - Take Your Time";
+      effectBox.textContent = "PAUSED";
+      effectBox.className = "w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 text-white text-2xl font-bold flex items-center justify-center shadow-2xl pulse-gentle";
+      showNotification("Session paused. Resume when you're ready!", "info");
+    }
+
+    function resumeSession() {
+      if (!paused) return;
+      paused = false;
+      showNotification("Welcome back! Resuming your session...", "success");
+      setTimeout(() => {
+        runSet();
+      }, 1000);
+    }
+
+    function terminateSession() {
+      clearTimeout(holdTimeout);
+      paused = false;
+      statusText.textContent = "⏹️ Session Stopped";
+      effectBox.textContent = "STOPPED";
+      effectBox.className = "w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-gray-400 to-gray-600 text-white text-2xl font-bold flex items-center justify-center shadow-2xl";
+      repCount.textContent = "-";
+      setCount.textContent = "-";
+      showNotification("Session terminated. Great effort!", "info");
+    }
+
+    function finishSession() {
+      clearTimeout(holdTimeout);
+      statusText.textContent = `🎉 Congratulations ${username}! Session Complete!`;
+      effectBox.className = "w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-purple-500 to-pink-500 text-white text-2xl font-bold flex items-center justify-center shadow-2xl pulse-strong";
+      effectBox.textContent = "SUCCESS!";
+      
+      // Mark session as completed
+      if (window.sessionHistory && window.sessionHistory.length > 0) {
+        window.sessionHistory[window.sessionHistory.length - 1].completed = true;
+      }
+      
+      showNotification("🌟 Amazing work! You've completed your wellness session!", "success");
+    }
+
+    function toggleInfo() {
+      const modal = document.getElementById("info-modal");
+      modal.classList.toggle("hidden");
+      modal.classList.toggle("flex");
+    }
+
+    function showHistory() {
+      const historySection = document.getElementById("history-section");
+      const content = document.getElementById("history-content");
+      const history = window.sessionHistory || [];
+
+      if (history.length === 0) {
+        content.innerHTML = `
+          <div class="text-center py-12">
+            <div class="text-6xl mb-4">📊</div>
+            <p class="text-gray-500 text-lg">No sessions completed yet</p>
+            <p class="text-gray-400">Start your first wellness session to see your progress here!</p>
+          </div>`;
+      } else {
+        content.innerHTML = history.map((session, index) =>
+          `<div class="bg-white/50 p-6 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 ${session.completed ? 'border-l-4 border-green-400' : 'border-l-4 border-yellow-400'}">
+            <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center mr-4">
+                  <span class="text-white font-bold">${session.name.charAt(0).toUpperCase()}</span>
+                </div>
+                <div>
+                  <h3 class="font-bold text-gray-800">${session.name}</h3>
+                  <p class="text-sm text-gray-600">${session.date}</p>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="text-2xl mb-1">${session.completed ? '✅' : '⏳'}</div>
+                <div class="text-xs text-gray-500">${session.completed ? 'Completed' : 'Started'}</div>
+              </div>
+            </div>
+            <div class="flex space-x-4 text-sm">
+              <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+                📊 ${session.sets} Sets
+              </div>
+              <div class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full">
+                🔄 ${session.reps} Reps
+              </div>
+              <div class="bg-red-100 text-red-800 px-3 py-1 rounded-full">
+                ⏱️ ${session.holdSeconds || 5}s Hold
+              </div>
+              <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full">
+                🌿 ${session.relaxSeconds || 5}s Relax
+              </div>
+            </div>
+          </div>`
+        ).join('');
+      }
+
+      historySection.classList.remove("hidden");
+    }
+
+    function clearHistory() {
+      window.sessionHistory = [];
+      showHistory();
+      showNotification("History cleared successfully", "info");
+    }
+
+    function showNotification(message, type = "info") {
+      const notification = document.createElement("div");
+      const colors = {
+        success: "from-green-400 to-emerald-500",
+        error: "from-red-400 to-red-500",
+        info: "from-blue-400 to-blue-500"
+      };
+      
+      notification.className = `fixed top-4 right-4 z-50 bg-gradient-to-r ${colors[type]} text-white px-6 py-4 rounded-2xl shadow-lg transform translate-x-full transition-transform duration-300`;
+      notification.textContent = message;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.style.transform = "translateX(0)";
+      }, 100);
+      
+      setTimeout(() => {
+        notification.style.transform = "translateX(100%)";
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 300);
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>
