@@ -383,6 +383,10 @@
       if (!window.sessionHistory) window.sessionHistory = [];
       window.sessionHistory.push(session);
 
+      let sessionHistory = JSON.parse(localStorage.getItem('sessionHistory')) || [];
+      sessionHistory(session);
+      localStorage.setItem('sessionHistory', JSON.stringify(sessionHistory));
+
       document.getElementById("input-section").classList.add("hidden");
       document.getElementById("timer-section").classList.remove("hidden");
 
@@ -500,62 +504,65 @@
       modal.classList.toggle("flex");
     }
 
-    function showHistory() {
-      const historySection = document.getElementById("history-section");
-      const content = document.getElementById("history-content");
-      const history = window.sessionHistory || [];
+   function showHistory() {
+  const historySection = document.getElementById("history-section");
+  const content = document.getElementById("history-content");
 
-      if (history.length === 0) {
-        content.innerHTML = `
-          <div class="text-center py-12">
-            <div class="text-6xl mb-4">📊</div>
-            <p class="text-gray-500 text-lg">No sessions completed yet</p>
-            <p class="text-gray-400">Start your first wellness session to see your progress here!</p>
-          </div>`;
-      } else {
-        content.innerHTML = history.map((session, index) =>
-          `<div class="bg-white/50 p-6 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 ${session.completed ? 'border-l-4 border-green-400' : 'border-l-4 border-yellow-400'}">
-            <div class="flex items-center justify-between mb-3">
-              <div class="flex items-center">
-                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center mr-4">
-                  <span class="text-white font-bold">${session.name.charAt(0).toUpperCase()}</span>
-                </div>
-                <div>
-                  <h3 class="font-bold text-gray-800">${session.name}</h3>
-                  <p class="text-sm text-gray-600">${session.date}</p>
-                </div>
-              </div>
-              <div class="text-right">
-                <div class="text-2xl mb-1">${session.completed ? '✅' : '⏳'}</div>
-                <div class="text-xs text-gray-500">${session.completed ? 'Completed' : 'Started'}</div>
-              </div>
+  // ✅ Fetch from localStorage instead of window.sessionHistory
+  const history = JSON.parse(localStorage.getItem("sessionHistory")) || [];
+
+  if (history.length === 0) {
+    content.innerHTML = `
+      <div class="text-center py-12">
+        <div class="text-6xl mb-4">📊</div>
+        <p class="text-gray-500 text-lg">No sessions completed yet</p>
+        <p class="text-gray-400">Start your first wellness session to see your progress here!</p>
+      </div>`;
+  } else {
+    content.innerHTML = history.map((session, index) =>
+      `<div class="bg-white/50 p-6 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 ${session.completed ? 'border-l-4 border-green-400' : 'border-l-4 border-yellow-400'}">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center mr-4">
+              <span class="text-white font-bold">${session.name.charAt(0).toUpperCase()}</span>
             </div>
-            <div class="flex space-x-4 text-sm">
-              <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
-                📊 ${session.sets} Sets
-              </div>
-              <div class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full">
-                🔄 ${session.reps} Reps
-              </div>
-              <div class="bg-red-100 text-red-800 px-3 py-1 rounded-full">
-                ⏱️ ${session.holdSeconds || 5}s Hold
-              </div>
-              <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full">
-                🌿 ${session.relaxSeconds || 5}s Relax
-              </div>
+            <div>
+              <h3 class="font-bold text-gray-800">${session.name}</h3>
+              <p class="text-sm text-gray-600">${session.date}</p>
             </div>
-          </div>`
-        ).join('');
-      }
+          </div>
+          <div class="text-right">
+            <div class="text-2xl mb-1">${session.completed ? '✅' : '⏳'}</div>
+            <div class="text-xs text-gray-500">${session.completed ? 'Completed' : 'Started'}</div>
+          </div>
+        </div>
+        <div class="flex space-x-4 text-sm">
+          <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+            📊 ${session.sets} Sets
+          </div>
+          <div class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full">
+            🔄 ${session.reps} Reps
+          </div>
+          <div class="bg-red-100 text-red-800 px-3 py-1 rounded-full">
+            ⏱️ ${session.holdSeconds || 5}s Hold
+          </div>
+          <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full">
+            🌿 ${session.relaxSeconds || 5}s Relax
+          </div>
+        </div>
+      </div>`
+    ).join('');
+  }
 
-      historySection.classList.remove("hidden");
-    }
+  historySection.classList.remove("hidden");
+}
 
-    function clearHistory() {
-      window.sessionHistory = [];
-      showHistory();
-      showNotification("History cleared successfully", "info");
-    }
+function clearHistory() {
+  // ✅ Clear localStorage instead of just in-memory
+  localStorage.removeItem("sessionHistory");
+  showHistory();
+  showNotification("History cleared successfully", "info");
+}
 
     function showNotification(message, type = "info") {
       const notification = document.createElement("div");
