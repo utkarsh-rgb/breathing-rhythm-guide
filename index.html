@@ -357,6 +357,8 @@
     const setCount = document.getElementById("set-count");
 
     function startSession() {
+      alert("Button clicked!");
+    
       username = document.getElementById("username").value.trim();
       totalSets = parseInt(document.getElementById("sets").value);
       totalReps = parseInt(document.getElementById("reps").value);
@@ -379,12 +381,10 @@
         completed: false
       };
 
-      // Note: Using in-memory storage for this demo
-      if (!window.sessionHistory) window.sessionHistory = [];
-      window.sessionHistory.push(session);
+    
 
       let sessionHistory = JSON.parse(localStorage.getItem('sessionHistory')) || [];
-      sessionHistory(session);
+      sessionHistory.push(session);
       localStorage.setItem('sessionHistory', JSON.stringify(sessionHistory));
 
       document.getElementById("input-section").classList.add("hidden");
